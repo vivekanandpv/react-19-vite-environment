@@ -1,0 +1,25 @@
+version: '3'
+networks:
+  my-net:
+    driver: bridge
+
+services:
+  backend:
+    image: vivekanandpv/express-backend
+    environment:
+      SERVER_PORT: 6000
+    container_name: backend
+    networks:
+      - my-net
+    ports:
+      - 9090:6000
+
+  frontend:
+    image: react-vite-env
+    environment:
+      API_URL: http://backend:6000
+    container_name: frontend
+    networks:
+      - my-net
+    ports:
+      - 9001:80

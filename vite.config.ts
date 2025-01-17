@@ -9,6 +9,7 @@ export default defineConfig({
       '/api': {
         target: 'https://jsonplaceholder.typicode.com',
         changeOrigin: true, // helpful for some backend setups
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
